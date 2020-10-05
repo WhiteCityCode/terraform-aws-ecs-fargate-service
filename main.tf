@@ -12,7 +12,7 @@ data "aws_lb_target_group" "lb_http_target_groups" {
 }
 
 data "aws_lb_target_group" "lb_https_target_groups" {
-  for_each = toset(var.lb_https_tgs_arns)
+  for_each = var.lb_https_tgs_arns != null ? toset(var.lb_https_tgs_arns) : toset([])
   arn      = each.key
 }
 
